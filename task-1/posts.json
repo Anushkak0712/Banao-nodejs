@@ -1,0 +1,77 @@
+[
+  {
+    "id": 5,
+    "postedBy": "test_10",
+    "postedAt": "2024-07-16T14:43:39.098Z",
+    "content": "this is my 6th post",
+    "hashtag": [
+      "hashtag1",
+      "hashtag2"
+    ],
+    "totalLikes": 0,
+    "likedBy": [],
+    "comments": []
+  },
+  {
+    "id": 6,
+    "postedBy": "test_10",
+    "postedAt": "2024-07-16T14:43:43.623Z",
+    "content": "this is my 7th post",
+    "hashtag": [
+      "hashtag1",
+      "hashtag2"
+    ],
+    "totalLikes": 0,
+    "likedBy": [],
+    "comments": []
+  },
+  {
+    "id": 8,
+    "postedBy": "test_13",
+    "postedAt": "2024-07-16T16:08:43.313Z",
+    "content": "this is my new 8th post",
+    "hashtag": [
+      "hashtag1",
+      "hashtag2"
+    ],
+    "totalLikes": 1,
+    "likedBy": [
+      "test_13"
+    ],
+    "comments": [
+      {
+        "username": "test_13",
+        "comment_text": "this is my first comment"
+      },
+      {
+        "username": "test_13",
+        "comment_text": "this is my second comment"
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "postedBy": "test_14",
+    "postedAt": "2024-07-24T17:41:59.050Z",
+    "content": "this is new post",
+    "hashtag": [
+      "hashtag1",
+      "hashtag2"
+    ],
+    "totalLikes": 2,
+    "likedBy": [
+      "test_14",
+      "test_15"
+    ],
+    "comments": [
+      {
+        "username": "test_14",
+        "comment_text": "this is my first comment"
+      },
+      {
+        "username": "test_15",
+        "comment_text": "this is my first comment"
+      }
+    ]
+  }
+]
