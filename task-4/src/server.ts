@@ -3,10 +3,10 @@ import app from './app';
 import { Server } from 'http';
 import { Server as SocketIOServer } from 'socket.io';
 import { checkAlerts } from './services/alertService';
-
+console.log('server start hit')
 const httpServer = new Server(app);
 const io = new SocketIOServer(httpServer);
-
+console.log('server hit')
 io.on('connection', (socket) => {
     console.log('A user connected');
     

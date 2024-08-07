@@ -8,6 +8,7 @@ interface AlertCriteria {
 
 interface User extends mongoose.Document {
     email: string;
+    password:string;
     alerts: AlertCriteria[];
 }
 
@@ -19,6 +20,7 @@ const AlertCriteriaSchema = new mongoose.Schema({
 
 const UserSchema = new mongoose.Schema({
     email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
     alerts: [AlertCriteriaSchema],
 });
 

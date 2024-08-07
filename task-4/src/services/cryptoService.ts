@@ -1,6 +1,6 @@
 import axios from 'axios';
 import Redis from 'ioredis';
-import { Prices, PriceData } from '../types';
+import { Prices, PriceData } from '../dtypes';
 
 const redisClient = new Redis();
 

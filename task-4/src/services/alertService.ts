@@ -1,5 +1,5 @@
 import User from '../models/User';
-import { Prices, PriceData } from '../types';
+import { Prices, PriceData } from '../dtypes';
 import { fetchCryptoPrices } from './cryptoService';
 import { Request, Response } from 'express';
 
@@ -38,3 +38,20 @@ export const checkAlerts = async () => {
     return -1;
   }
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
