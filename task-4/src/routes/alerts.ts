@@ -19,7 +19,7 @@ router.get('/check',async (req, res) => {
   })
 // Route to create a new alert
 router.post('/create',authenticateJWT, async (req, res) => {
-    console.log(req.user)
+    //console.log(req.user)
     const email= req.user;
     const {  crypto, targetPrice, direction } = req.body;
 

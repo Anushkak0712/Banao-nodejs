@@ -15,8 +15,8 @@ function generateToken(payload: JwtPayload): string {
 }
 
 function authenticateJWT(req: Request, res: Response, next: NextFunction){
-    console.log(typeof(req.cookies))
-    console.log(req.cookies)
+    //console.log(typeof(req.cookies))
+    //console.log(req.cookies)
   const token = req.cookies.token;
   if (!token) {
     return res.status(401).json({ message: 'Unauthorized' });

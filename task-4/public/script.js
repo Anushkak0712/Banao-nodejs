@@ -52,13 +52,6 @@ signupForm.addEventListener('submit', (event) => {
     event.preventDefault();
     const email = emailSignupInput.value;
     const password = document.getElementById('password').value;
-    const confirmPassword = document.getElementById('confirm-password').value;
-
-    // Validation
-    if (password !== confirmPassword) {
-        alert('Passwords do not match');
-        return;
-    }
 
     // API call
     fetch('/register', {

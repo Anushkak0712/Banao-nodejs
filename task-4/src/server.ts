@@ -21,21 +21,14 @@ io.on('connection', (socket) => {
 });
 
 // Check alerts every minute
-//setInterval(checkAlerts, 60000);
 setInterval(async () => {
     try {
         const alerts = await checkAlerts();
-        console.log('------------------------------------------------------')
-        console.log(alerts);
-        console.log('------------------------------------------------------')
-        console.log('------------------------------------------------------')
-        console.log(typeof(alerts[0]));
-        console.log('------------------------------------------------------')
+        
         if (alerts[0]!==-1){alerts.forEach((alert:any)=> {
             // Send the alert to the user's room
-            
             io.to(alert.user).emit('alert', alert.message);
-            console.log(`emitted alert ${alert}`)
+            //console.log(`emitted alert ${alert}`)
         })};
     } catch (error) {
         console.error('Error checking alerts:', error);
