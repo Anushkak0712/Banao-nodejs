@@ -8,7 +8,7 @@ interface AlertCriteria {
 
 interface User extends mongoose.Document {
     email: string;
-    password:string;
+    password: string;
     alerts: AlertCriteria[];
 }
 
@@ -19,7 +19,19 @@ const AlertCriteriaSchema = new mongoose.Schema({
 });
 
 const UserSchema = new mongoose.Schema({
-    email: { type: String, required: true, unique: true },
+    email: { 
+        type: String, 
+        required: true, 
+        unique: true, 
+        validate: {
+            validator: function(value: string) {
+                // Regex for basic email validation
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(value);
+            },
+            message:  `Not a valid email address!`
+        }
+    },
     password: { type: String, required: true },
     alerts: [AlertCriteriaSchema],
 });

@@ -4,16 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style2.css">
+    <script src="/socket.io/socket.io.js"></script>
 </head>
 <body>
     <div class="container">
-        <h1>Profile</h1>
-        <p>Welcome</p>
-        <p>Email: {{ email }}</p>
-        <p><a href="#" id="logout-link">Logout</a></p>
+        <header>
+            <h1>Profile</h1>
+            <p>Welcome, <span id="username">User</span>!</p>
+            <div class="logout-container">
+                <a href="#" id="logout-link" class="logout-button">Logout</a>
+            </div>
+        </header>
+        <main>
+            <section id="alerts">
+                <h2>Alerts</h2>
+                <form id="create-alert">
+                    <label for="crypto">Cryptocurrency:</label>
+                    <input type="text" id="crypto" name="crypto" required>
+                    
+                    <label for="targetPrice">Target Price:</label>
+                    <input type="number" id="targetPrice" name="targetPrice" step="0.01" required>
+                    
+                    <label for="direction">Direction:</label>
+                    <select id="direction" name="direction" required>
+                        <option value="above">Above</option>
+                        <option value="below">Below</option>
+                    </select>
+                    
+                    <button type="submit">Create Alert</button>
+                </form>
+            </section>
+            <section id="notifications">
+                <h2>Notifications</h2>
+                <!-- Notifications will be dynamically added here -->
+            </section>
+        </main>
     </div>
 
-    <script src="script.js"></script>
+    <script src="script2.js"></script>
 </body>
 </html>

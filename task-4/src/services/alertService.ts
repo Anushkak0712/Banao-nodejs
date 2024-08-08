@@ -10,7 +10,7 @@ export const checkAlerts = async () => {
   console.log(users);
   console.log(typeof prices);
 
-  let notifications:string[] = [];
+  let notifications:any= [];
 
   users.forEach((user) => {
     console.log(user.alerts);
@@ -27,7 +27,7 @@ export const checkAlerts = async () => {
       if (shouldNotify) {
         // Send real-time alert to user (e.g., via WebSocket)
         console.log(`Notify ${user.email}: ${alert.crypto} is ${alert.direction} ${alert.targetPrice}`);
-        notifications.push(`Notify ${user.email}: ${alert.crypto} is ${alert.direction} ${alert.targetPrice}`);
+        notifications.push({user:user.email,message: `${alert.crypto} is ${alert.direction} ${alert.targetPrice}`});
       }
     });
   });
@@ -35,7 +35,7 @@ export const checkAlerts = async () => {
   return notifications}
   catch(error){
     console.log(error)
-    return -1;
+    return [-1];
   }
 };
 

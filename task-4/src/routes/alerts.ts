@@ -1,12 +1,13 @@
 import { Router } from 'express';
 import User from '../models/User';
 import { checkAlerts } from '../services/alertService';
+import { authenticateJWT } from './auth';
 
 const router = Router();
 router.get('/check',async (req, res) => {
     try {
       const notifications = await checkAlerts();
-      if (notifications === -1) {
+      if (notifications [0]===null) {
         res.status(500).send({ message: 'Error checking alerts' });
       } else {
         res.status(200).send({ message: notifications.join(', ') });
@@ -17,8 +18,10 @@ router.get('/check',async (req, res) => {
     }
   })
 // Route to create a new alert
-router.post('/create', async (req, res) => {
-    const { email, crypto, targetPrice, direction } = req.body;
+router.post('/create',authenticateJWT, async (req, res) => {
+    console.log(req.user)
+    const email= req.user;
+    const {  crypto, targetPrice, direction } = req.body;
 
     try {
         let user = await User.findOne({ email });

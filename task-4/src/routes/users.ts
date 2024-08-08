@@ -1,5 +1,5 @@
 import express from 'express';
-import { generateToken, authenticateJWT } from './auth';
+import {  authenticateJWT } from './auth';
 const router = express.Router();
 import bcrypt from 'bcrypt';
 import path from 'path';
@@ -36,7 +36,7 @@ router.post('/login', async (req, res) => {
     const user = await User.findOne({ email });
   
     if (!user) {
-      return res.status(401).json({ message: 'Invalid email or password' });
+      return res.status(401).json({ message: 'no such user found.' });
     }
   
     // Compare the provided password with the hashed password
@@ -55,11 +55,20 @@ router.post('/login', async (req, res) => {
     res.status(200).json({ user: user.email, token });
   });
   router.post('/logout', async (req, res) => {
-    res.clearCookie('token'); // Clear the token cookie
-    res.status(200).json({ message: 'Logged out successfully' });
-  });
+    try{res.clearCookie('token'); // Clear the token cookie
+    res.status(200).json({ message: 'Logged out successfully' });}
+    catch(err){
+        res.status(500).json({ message: 'Logged out failed' });}
+    }
+  );
 // Protected route
 router.get('/profile', authenticateJWT, (req, res) => {
     res.redirect('profile.html')
 });
+router.get('/createAlert',(req,res)=>{
+    res.redirect('createAlert.html')
+})
+router.get('/getuser', authenticateJWT, (req, res) => {
+    res.json(req.user);
+  });
 export default router;

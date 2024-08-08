@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Trading Form</title>
+    <script src="/socket.io/socket.io.js">
+    </script>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            width: 350px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 16px 16px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Crypto Trading Form</h2>
+    <form id="create-alert">
+        <label for="crypto">Cryptocurrency:</label>
+        
+        <select id="crypto" name="crypto" required>
+            <option value="bitcoin">bitcoin</option>
+            <option value="ethereum">ethereum</option>
+            <option value="ripple">ripple</option>
+        </select>
+        <label for="targetPrice">Target Price:</label>
+        <input type="number" id="targetPrice" name="targetPrice" required>
+
+        <label for="direction">Direction:</label>
+        <select id="direction" name="direction" required>
+            <option value="above">above</option>
+            <option value="below">below</option>
+        </select>
+
+        <button type="submit">Submit</button>
+    </form>
+    <script>const createAlert = document.getElementById('create-alert');
+        createAlert.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const crypto = document.getElementById('crypto').value;
+            const targetPrice = document.getElementById('targetPrice').value;
+            const direction = document.getElementById('direction').value;
+          
+            // Here you would make your API call
+            // For example, using fetch:
+            console.log('fetching')
+            fetch('/api/alerts/create', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({crypto,targetPrice,direction })
+            })
+            .then(() => {
+                
+              // Handle the API response
+              console.log("added alert")
+              window.location.href = 'http://localhost:6678/profile';
+              // For example, if successful, you might redirect to a protected page
+            })
+            .catch(error => {
+              // Handle any errors
+              console.error('Error:', error);
+            });
+          });</script>
+</body>
+</html>
